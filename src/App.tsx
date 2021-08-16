@@ -4,12 +4,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import throttle from "lodash/throttle";
-import { useFetchCharacters } from "./hooks";
-import CharacterThumbnail from "./components/CharacterThumbnail";
-import Search from "./components/Search";
+import { useFetchCharacters } from "./hooks/fetch-characters";
+import { Search, CharacterThumbnail } from "./components";
 
 const App = () => {
-  const { data, error, fetch } = useFetchCharacters();
+  const { data, loading, error, fetch } = useFetchCharacters();
   React.useEffect(() => {
     fetch();
   }, [fetch]);
@@ -22,6 +21,7 @@ const App = () => {
         <Col xs={{ span: 6, offset: 3 }}>
           <Search onChange={throttledFetch} />
         </Col>
+        <Col xs={{ span: 6, offset: 3 }}>{loading && "Fetching..."}</Col>
       </Row>
       <div className="text-center">
         {error?.status === 404 ? (

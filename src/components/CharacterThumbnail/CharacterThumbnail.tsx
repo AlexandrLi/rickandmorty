@@ -2,7 +2,7 @@ import Popover from "react-bootstrap/Popover";
 import Image from "react-bootstrap/Image";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import React from "react";
-import { Character } from "../types";
+import { Character } from "../../types";
 
 type CharacterThumbnailProps = {
   data: Character;

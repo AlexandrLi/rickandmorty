@@ -3,8 +3,6 @@ import { render, screen } from "@testing-library/react";
 import App from "./App";
 import axios from "axios";
 import { Character } from "./types";
-import userEvent from "@testing-library/user-event";
-import Search from "./components/Search";
 import Mock = jest.Mock;
 
 jest.mock("axios");
@@ -30,21 +28,12 @@ const character: Character = {
 };
 
 describe("App", () => {
-  test("renders character thumbnail with popover on hover", async () => {
+  test('renders "Fetching..." text', async () => {
     (axios.get as Mock).mockResolvedValueOnce({
-      data: { info: {}, results: [character] },
+      results: [character],
     });
     render(<App />);
-    const characterThumbnail = await screen.findByRole("img", {
-      name: character.name,
-    });
-    expect(characterThumbnail).toBeInTheDocument();
-    userEvent.hover(characterThumbnail);
-    expect(
-      await screen.findByText(new RegExp(character.name))
-    ).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(character.status))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(character.species))).toBeInTheDocument();
+    expect(await screen.findByText(/Fetching/)).toBeInTheDocument();
   });
 
   test('renders "There is nothing here" error message', async () => {
@@ -59,17 +48,5 @@ describe("App", () => {
     expect(
       await screen.findByText(new RegExp(errorMessage))
     ).toBeInTheDocument();
-  });
-});
-
-describe("Search", () => {
-  test("should call fetchMock if search value length greater than 1", () => {
-    const fetchMock = jest.fn();
-    render(<Search onChange={fetchMock} />);
-    const inputElement = screen.getByRole("textbox");
-    userEvent.type(inputElement, "r");
-    expect(fetchMock).not.toBeCalled();
-    userEvent.type(inputElement, "i");
-    expect(fetchMock).toBeCalledWith("ri");
   });
 });

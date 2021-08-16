@@ -1,8 +1,8 @@
 import React from "react";
 import axios, { AxiosError } from "axios";
-import { Character, ResponseInfo } from "./types";
+import { Character, ResponseInfo } from "../types";
 
-type FetchCharactersResponse = {
+export type FetchCharactersResponse = {
   info: ResponseInfo;
   results: Character[];
 };
@@ -17,7 +17,6 @@ export function useFetchCharacters() {
   const fetch = React.useCallback(async (name?: string) => {
     try {
       setLoading(true);
-      setError(null);
       const response = await axios.get<FetchCharactersResponse>(
         "https://rickandmortyapi.com/api/character",
         {
@@ -30,6 +29,7 @@ export function useFetchCharacters() {
         }
       );
       setData(response.data.results);
+      setError(null);
     } catch (e) {
       setError((e as FetchCharactersError).response);
     } finally {
