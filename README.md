@@ -22,12 +22,12 @@ API: [https://rickandmortyapi.com/documentation](https://rickandmortyapi.com/doc
 
 ## Технические требования
 
-###Обязательно:
+### Обязательно:
 * React (Create React App отлично подойдет)
 * Для запросов к API можно взять любую библиотеку (axios, superagent, etc.)
 * Для стилей чистый CSS или любой препроцессор (SASS/LESS)
 
-###Плюс в карму:
+### Плюс в карму:
 * Typescript
 * Линтер
 
