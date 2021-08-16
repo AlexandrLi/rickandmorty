@@ -1,5 +1,7 @@
 # Тестовое задание Rick and Morty
 
+## [Демонстрация](https://unruffled-fermi-bd5650.netlify.app/)
+
 ## Описание
 
 Создайте React приложение, использую открытое API Rick & Morty, отображающее
