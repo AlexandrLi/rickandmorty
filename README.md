@@ -1,7 +1,5 @@
 # Тестовое задание Rick and Morty
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Описание
 
 Создайте React приложение, использую открытое API Rick & Morty, отображающее
